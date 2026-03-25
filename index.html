@@ -1,90 +1,574 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="3 月 31 日 SDD 規格驅動開發講演預告"
-    />
-    <title>春漾 SDD｜3 月 31 日講演預告</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="page">
-      <header class="hero">
-        <p class="eyebrow">03 / 31 · SDD 規格驅動開發預告</p>
-        <h1>春漾 SDD</h1>
-        <p class="subtitle"></p>
-      </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>03.31 春漾 SDD｜課前預告</title>
+  <style>
+    :root {
+      --sky-1: #87d8ff;
+      --sky-2: #dff5ff;
+      --sky-3: #f8fdff;
+      --ink: #1f4562;
+      --ink-soft: #6184a0;
+      --accent: #f4cd42;
+      --accent-soft: #fff2a8;
+      --glass: rgba(255,255,255,.68);
+      --glass-strong: rgba(255,255,255,.84);
+      --line: rgba(255,255,255,.56);
+      --shadow: 0 24px 60px rgba(39, 88, 122, .16);
+      --radius-2xl: 34px;
+      --radius-xl: 26px;
+      --radius-lg: 20px;
+      --max: 1260px;
+    }
 
-      <section class="poster-section" aria-labelledby="poster-title">
-        <div class="section-head">
-          <h2 id="poster-title"></h2>
-          <p></p>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(255,255,255,.92), transparent 14%),
+        radial-gradient(circle at 87% 14%, rgba(255,255,255,.78), transparent 17%),
+        linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 44%, var(--sky-3) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(255,255,255,.42), transparent 68%);
+      filter: blur(10px);
+    }
+
+    body::before {
+      width: 380px;
+      height: 380px;
+      top: -120px;
+      left: -90px;
+    }
+
+    body::after {
+      width: 320px;
+      height: 320px;
+      right: -70px;
+      bottom: -120px;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max), calc(100% - 28px));
+      margin: 0 auto;
+      padding: 22px 0 40px;
+    }
+
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .brand,
+    .meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.5);
+      border: 1px solid rgba(255,255,255,.62);
+      box-shadow: var(--shadow);
+    }
+
+    .brand-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--accent-soft), var(--accent) 66%, #d7eeff 100%);
+      flex: none;
+    }
+
+    .brand-text,
+    .meta-text {
+      font-size: .95rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: #4a7090;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(320px, .9fr) minmax(360px, 1.1fr);
+      gap: 26px;
+      align-items: start;
+    }
+
+    .visual {
+      position: relative;
+      padding: 18px;
+      border-radius: var(--radius-2xl);
+      overflow: visible;
+    }
+
+    .visual::before {
+      content: "";
+      position: absolute;
+      inset: 30px 20px auto auto;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.38);
+      filter: blur(2px);
+    }
+
+    .poster-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      min-height: 720px;
+      background: rgba(255,255,255,.82);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.74);
+      transform: rotate(-1.2deg);
+      transform-origin: center;
+    }
+
+    .poster-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .floating-note,
+    .floating-date {
+      position: absolute;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.66);
+      backdrop-filter: blur(14px);
+    }
+
+    .floating-note {
+      right: -10px;
+      top: 44px;
+      max-width: 220px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.78);
+      transform: rotate(5deg);
+      font-size: .94rem;
+      line-height: 1.7;
+      color: #4f7592;
+    }
+
+    .floating-date {
+      left: 14px;
+      bottom: 18px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(244, 205, 66, .92);
+      color: #3f6481;
+      font-weight: 900;
+      letter-spacing: .08em;
+      transform: rotate(-4deg);
+    }
+
+    .content {
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .hero-copy {
+      position: relative;
+      padding: 32px 30px 24px;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      right: -26px;
+      top: -22px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.48), transparent 68%);
+    }
+
+    .kicker-row {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.72);
+      color: #4a7290;
+      font-size: .88rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+    }
+
+    .headline {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      font-size: clamp(2.9rem, 5.8vw, 6rem);
+      line-height: .92;
+      letter-spacing: .02em;
+      color: #ffffff;
+      text-shadow: 0 16px 30px rgba(44, 94, 134, .24);
+    }
+
+    .subhead {
+      position: relative;
+      z-index: 1;
+      margin: 12px 0 0;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      line-height: 1.85;
+      color: #4e7693;
+      max-width: 34rem;
+    }
+
+    .subhead strong {
+      color: #2d628f;
+    }
+
+    .lyrics {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+
+    .lyric-card {
+      position: relative;
+      padding: 22px 22px 20px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(255,255,255,.6);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .lyric-card::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 0;
+      width: 72px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), rgba(244,205,66,0));
+    }
+
+    .card-a { grid-column: span 7; transform: rotate(-1.2deg); }
+    .card-b { grid-column: span 5; transform: rotate(1deg); margin-top: 30px; }
+    .card-c { grid-column: span 5; transform: rotate(-1deg); }
+    .card-d { grid-column: span 7; transform: rotate(1.2deg); margin-top: -10px; }
+
+    .lyric-kicker {
+      margin: 0 0 12px;
+      font-size: .84rem;
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #6c8aa3;
+    }
+
+    .line-group {
+      display: grid;
+      gap: 8px;
+    }
+
+    .line {
+      margin: 0;
+      font-size: clamp(1.06rem, 1.65vw, 1.28rem);
+      line-height: 1.62;
+      letter-spacing: .04em;
+      color: var(--ink);
+    }
+
+    .line strong {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .video-shell {
+      position: relative;
+      margin-top: 8px;
+      padding: 20px;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+    }
+
+    .video-shell::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -56px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,.38), transparent 68%);
+    }
+
+    .video-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+      margin-bottom: 14px;
+      padding: 2px 4px 0;
+    }
+
+    .video-title {
+      margin: 0;
+      font-size: clamp(1.32rem, 2.4vw, 1.9rem);
+      color: #2d628e;
+    }
+
+    .video-meta {
+      margin: 0;
+      color: #6d8da6;
+      font-size: .92rem;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+
+    .video-frame {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      border-radius: 24px;
+      background: var(--glass-strong);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.64);
+    }
+
+    .video-frame iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #dff2ff;
+    }
+
+    .repo-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid rgba(255,255,255,.54);
+      color: #6284a0;
+      line-height: 1.75;
+      font-size: .93rem;
+    }
+
+    .repo-note strong {
+      color: #2f648f;
+    }
+
+    .footer {
+      padding: 16px 4px 0;
+      text-align: center;
+      color: #7593aa;
+      font-size: .92rem;
+      letter-spacing: .08em;
+    }
+
+    @media (max-width: 1100px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .poster-frame {
+        min-height: auto;
+        aspect-ratio: 3 / 4;
+      }
+
+      .floating-note {
+        right: 8px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .lyrics {
+        grid-template-columns: 1fr;
+      }
+
+      .card-a,
+      .card-b,
+      .card-c,
+      .card-d {
+        grid-column: auto;
+        transform: none;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 16px, var(--max));
+        padding-top: 16px;
+        padding-bottom: 28px;
+      }
+
+      .topbar,
+      .video-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-copy,
+      .visual,
+      .video-shell {
+        padding: 18px;
+      }
+
+      .floating-note {
+        position: static;
+        transform: none;
+        max-width: none;
+        margin-top: 14px;
+      }
+
+      .floating-date {
+        left: 10px;
+        bottom: 12px;
+      }
+
+      .headline {
+        font-size: clamp(2.4rem, 13vw, 4.2rem);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">春漾 SDD</span>
+      </div>
+      <div class="meta">
+        <span class="meta-text">03.31 ｜ 課前預告</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <aside class="visual glass">
+        <div class="poster-frame">
+          <img src="./assets/poster.jpg" alt="春漾 SDD 海報" />
         </div>
-        <figure class="poster-card">
-          <img
-            src="assets/sdd-poster.jpg"
-            alt="春漾 SDD "
-            loading="lazy"
-          />
-          <figcaption></figcaption>
-        </figure>
+        <div class="floating-note">不是先講完內容，而是先把節奏放出來。</div>
+        <div class="floating-date">DEPLOY 03.31</div>
+      </aside>
+
+      <section class="content">
+        <article class="hero-copy glass">
+          <div class="kicker-row">
+            <span class="pill">SDD 規格驅動開發</span>
+            <span class="pill">deploy preview</span>
+          </div>
+          <h1 class="headline">春漾<br />SDD</h1>
+          <p class="subhead">
+            先讓旋律與文案上線，<strong>真正的內容，留到 03.31 展開。</strong>
+          </p>
+        </article>
+
+        <section class="lyrics" aria-label="課前預告文案">
+          <article class="lyric-card card-a">
+            <p class="lyric-kicker">Guessing</p>
+            <div class="line-group">
+              <p class="line">別怪 AI 會亂猜</p>
+              <p class="line">人類腦補 更厲害</p>
+              <p class="line">prompt 像 code 這樣寫</p>
+              <p class="line"><strong>version、驗收</strong> 都要在</p>
+            </div>
+          </article>
+
+          <article class="lyric-card card-b">
+            <p class="lyric-kicker">Deploy</p>
+            <div class="line-group">
+              <p class="line">你的 vibe 不是我的 vibe</p>
+              <p class="line">跑得很快 也會歪</p>
+              <p class="line">要 deploy 就別逞強</p>
+              <p class="line"><strong>邊界風險</strong> 先說開</p>
+            </div>
+          </article>
+
+          <article class="lyric-card card-c">
+            <p class="lyric-kicker">Vibe</p>
+            <div class="line-group">
+              <p class="line"><strong>Vibe vibe vibe</strong> — 很快</p>
+              <p class="line">沒寫資安 就 bye-bye</p>
+              <p class="line">一致性 沒進來</p>
+              <p class="line">沒有就是 別想賴</p>
+            </div>
+          </article>
+
+          <article class="lyric-card card-d">
+            <p class="lyric-kicker">Align</p>
+            <div class="line-group">
+              <p class="line"><strong>SDD SDD</strong> — 展開</p>
+              <p class="line">context 拉滿 再來</p>
+              <p class="line">AI 每一行 都要看</p>
+              <p class="line">對齊了 才能上台</p>
+            </div>
+          </article>
+        </section>
       </section>
+    </section>
 
-      <section class="video-section" aria-labelledby="video-title">
-        <div class="section-head">
-          <h2 id="video-title">簡介</h2>
-          <p></p>
-        </div>
-        <div class="video-wrapper">
-          <iframe
-            src="https://www.youtube.com/embed/tnsdFy0BB98"
-            title="SDD 簡介影片"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </section>
+    <section class="video-shell glass">
+      <div class="video-head">
+        <h2 class="video-title">Theme Track</h2>
+        <p class="video-meta">Embedded YouTube</p>
+      </div>
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/tnsdFy0BB98?rel=0"
+          title="春漾 SDD 主題曲"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="repo-note">
+        這是一個可直接放進 GitHub repo 的單頁式網站，海報請放到 <strong>assets/poster.jpg</strong>。
+      </div>
+    </section>
 
-      <section class="copy-section" aria-labelledby="copy-title">
-        <div class="section-head">
-          <h2 id="copy-title">預告文字</h2>
-        </div>
-        <div class="copy-grid">
-          <blockquote>
-            別怪 AI 會亂猜<br />
-            人類腦補 更厲害<br />
-            prompt 像 code 這樣寫<br />
-            version、驗收 都要在
-          </blockquote>
-          <blockquote>
-            AI 寫得 比我快<br />
-            當然讓它 先寫來<br />
-            但 review、test、驗收<br />
-            一個都不能 放開
-          </blockquote>
-          <blockquote>
-            Vibe vibe vibe — 可以快<br />
-            可控不能 被掩蓋<br />
-            速度從來 不稀缺<br />
-            稀缺是 正確留下來
-          </blockquote>
-          <blockquote>
-            SDD SDD — 不呆<br />
-            是把意圖 寫下來<br />
-            把對話 變流程<br />
-            把未來 變成可維護的安排
-          </blockquote>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <p>📍 3 月 31 日。讓未來，從現在開始被安排。</p>
-      </footer>
-    </main>
-  </body>
+    <footer class="footer">03.31 春漾 SDD ｜ deploy preview</footer>
+  </main>
+</body>
 </html>
